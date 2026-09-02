@@ -1,8 +1,17 @@
+// import NavBar from "../components/NavBar"
+import Sidebar from "../components/Sidebar"
+import SearchBar from "../components/SearchBar"
+import NotesList from "../components/NotesList"
 
 const Dashboard = () => {
   return (
     <div>
-      Dashboard page
+
+      <Sidebar />
+
+      <SearchBar />
+
+      <NotesList />
     </div>
   )
 }
