@@ -1,8 +1,22 @@
-const NoteCard = () => {
+const NoteCard = ({note, togglePin, deleteNote}
+) => {
   return (
     <div>
-      <h3>Example Note</h3>
-      <p>This is an example note.</p>
+      <h3>{note.title}</h3>
+
+      <p>{note.content}</p>
+
+      <p>
+        Tags : {note.tags.join(", ")}
+      </p>
+
+      <button onClick={() => togglePin(note.id)}>
+        {note.isPinned ? "Unpin" : "Pin"}
+      </button>
+
+      <button onClick={() => deleteNote(note.id)}>
+        Delete
+      </button>
     </div>
   )
 }
