@@ -3,9 +3,6 @@ import NoteCard from "./NoteCard"
 
 
 const NotesList = ({notes, setNotes}) => {
-  
-}
-
 
 // create new note
 const addTestNote = () => {
@@ -23,7 +20,7 @@ const addTestNote = () => {
 }
 
 // pin the note
-const togglePin = (noteId) => {
+  const togglePin = (noteId) => {
 
     setNotes(
       notes.map((note) => {
