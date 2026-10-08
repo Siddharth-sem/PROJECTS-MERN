@@ -33,7 +33,25 @@ const Dashboard = () => {
       isPinned: false,
       isTrashed: false
     }
-  ])
+    ])
+
+  const deleteNote = (noteId) => {
+
+  setNotes(
+      notes.map((note) => {
+
+        if (note.id === noteId) {
+          return {
+            ...note,
+            isTrashed: !note.isTrashed
+          }
+        }
+
+        return note
+      })
+    )
+
+  }
 
   return (
     <div>
@@ -45,10 +63,12 @@ const Dashboard = () => {
       <NotesList
         notes={notes}
         setNotes={setNotes}
+        deleteNote={deleteNote}
       />
   
       <Trash 
         notes ={notes}
+        deleteNote ={deleteNote}
       />
 
     </div>

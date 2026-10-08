@@ -1,10 +1,18 @@
-import NotesList from "./NotesList.jsx"
+import NoteCard from "./NoteCard.jsx"
 
-const Trash = () => {
-  return (
-    <div>
-      
-    </div>
+const Trash = ({notes}) => {
+  return(
+  <div>
+    {notes
+        .filter((note) => note.isTrashed === true)
+        .map((note) => 
+            <NoteCard 
+                key={note.id}
+                note = {note}
+            />
+    )
+    }
+  </div>
   )
 }
 
