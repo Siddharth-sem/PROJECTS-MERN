@@ -55,17 +55,20 @@ const Dashboard = () => {
 
   return (
     <div>
-
+      <h1><u>SIDEBAR</u></h1>
       <Sidebar />
 
+      <h1><u>SEARCHBAR</u></h1>
       <SearchBar />
 
+      <h1><u>NOTELIST</u></h1>
       <NotesList
         notes={notes}
         setNotes={setNotes}
         deleteNote={deleteNote}
       />
   
+      <h1><u>TRASH</u></h1>
       <Trash 
         notes ={notes}
         deleteNote ={deleteNote}
