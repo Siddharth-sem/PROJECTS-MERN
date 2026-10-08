@@ -1,6 +1,6 @@
 import NoteCard from "./NoteCard.jsx"
 
-const Trash = ({notes}) => {
+const Trash = ({notes, deleteNote}) => {
   return(
   <div>
     {notes
@@ -9,6 +9,7 @@ const Trash = ({notes}) => {
             <NoteCard 
                 key={note.id}
                 note = {note}
+                deleteNote={deleteNote}
             />
     )
     }
