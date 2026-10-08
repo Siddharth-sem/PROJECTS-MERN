@@ -68,8 +68,18 @@ const togglePin = (noteId) => {
   const deleteNote = (noteId) => {
 
   setNotes(
-    notes.filter((note) => note.id !== noteId)
-  )
+      notes.map((note) => {
+
+        if (note.id === noteId) {
+          return {
+            ...note,
+            isTrashed: !note.isTrashed
+          }
+        }
+
+        return note
+      })
+    )
 
 }
 

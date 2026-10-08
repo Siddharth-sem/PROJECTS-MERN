@@ -15,7 +15,7 @@ const NoteCard = ({note, togglePin, deleteNote}
       </button>
 
       <button onClick={() => deleteNote(note.id)}>
-        {note.isTrashed ? "Trash" : "UnTrash"}
+        {note.isTrashed ? "Restore" : "Trash"}
       </button>
 
       {/* <button onClick={()=> toggleTrash(note.id)}>
