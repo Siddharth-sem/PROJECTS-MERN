@@ -1,4 +1,4 @@
-const NoteCard = ({note, togglePin, deleteNote}
+const NoteCard = ({note, togglePin, deleteNote, PermanentDelete}
 ) => {
   return (
     <div>
@@ -18,9 +18,9 @@ const NoteCard = ({note, togglePin, deleteNote}
         {note.isTrashed ? "Restore" : "Trash"}
       </button>
 
-      {/* <button onClick={()=> toggleTrash(note.id)}>
-
-      </button> */}
+      <button onClick={() => PermanentDelete(note.id)}>
+        Remove Permanantely
+      </button>
     </div>
   )
 }

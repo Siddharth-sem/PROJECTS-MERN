@@ -51,6 +51,9 @@ const addTestNote = () => {
         />
       ))}
 
+      <br />
+      <br />
+
       <button onClick={addTestNote}>
         + Add Test Note
       </button>
