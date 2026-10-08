@@ -1,35 +1,39 @@
 import { useState } from "react"
 import NoteCard from "./NoteCard"
+import NotesList from "smart-notes/frontend/src/pages/Dashboard.jsx"
 
 
-const NotesList = () => {
 
-const [notes, setNotes] = useState([
-  {
-    id: 1,
-    title: "React Notes",
-    content: "Learning components and props",
-    tags: ["React", "Frontend"],
-    isPinned: true,
-    isTrashed: false
-  },
-  {
-    id: 2,
-    title: "DBMS",
-    content: "Learning MongoDB and databases",
-    tags: ["DBMS", "MongoDB"],
-    isPinned: false,
-    isTrashed: false
-  },
-  {
-    id: 3,
-    title: "Hackathon Ideas",
-    content: "Ideas for the next hackathon",
-    tags: ["Hackathon"],
-    isPinned: false,
-    isTrashed: false
-  }
-])
+
+
+// const NotesList = () => {
+
+// const [notes, setNotes] = useState([
+//   {
+//     id: 1,
+//     title: "React Notes",
+//     content: "Learning components and props",
+//     tags: ["React", "Frontend"],
+//     isPinned: true,
+//     isTrashed: false
+//   },
+//   {
+//     id: 2,
+//     title: "DBMS",
+//     content: "Learning MongoDB and databases",
+//     tags: ["DBMS", "MongoDB"],
+//     isPinned: false,
+//     isTrashed: false
+//   },
+//   {
+//     id: 3,
+//     title: "Hackathon Ideas",
+//     content: "Ideas for the next hackathon",
+//     tags: ["Hackathon"],
+//     isPinned: false,
+//     isTrashed: false
+//   }
+// ])
 
 // create new note
 const addTestNote = () => {
@@ -86,7 +90,9 @@ const togglePin = (noteId) => {
 
   return (
     <div>
-      {notes.map((note) => (
+      {notes
+      .filter((note) => note.isTrashed === false)
+      .map((note) => (
         <NoteCard key={note.id} 
         note={note}
         togglePin={togglePin}
