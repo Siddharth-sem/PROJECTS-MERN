@@ -4,6 +4,7 @@ import { useState } from "react"
 import Sidebar from "../components/Sidebar"
 import SearchBar from "../components/SearchBar"
 import NotesList from "../components/NotesList"
+import Trash from "../components/Trash"
 
 const Dashboard = () => {
 
@@ -44,7 +45,12 @@ const Dashboard = () => {
       <NotesList
         notes={notes}
         setNotes={setNotes}
-/>
+      />
+  
+      <Trash 
+        notes ={notes}
+      />
+
     </div>
   )
 }
