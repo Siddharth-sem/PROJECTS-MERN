@@ -10,21 +10,24 @@ const [notes, setNotes] = useState([
     title: "React Notes",
     content: "Learning components and props",
     tags: ["React", "Frontend"],
-    isPinned: true
+    isPinned: true,
+    isTrashed: false
   },
   {
     id: 2,
     title: "DBMS",
     content: "Learning MongoDB and databases",
     tags: ["DBMS", "MongoDB"],
-    isPinned: false
+    isPinned: false,
+    isTrashed: false
   },
   {
     id: 3,
     title: "Hackathon Ideas",
     content: "Ideas for the next hackathon",
     tags: ["Hackathon"],
-    isPinned: false
+    isPinned: false,
+    isTrashed: false
   }
 ])
 
@@ -36,7 +39,8 @@ const addTestNote = () => {
     title: "New Test Note",
     content: "This note was added using state.",
     tags: ["Test"],
-    isPinned: false
+    isPinned: false,
+    isTrashed: false
   }
 
   setNotes([...notes, newNote])
