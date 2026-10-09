@@ -2,7 +2,7 @@
 import NoteCard from "./NoteCard"
 
 
-const NotesList = ({notes, setNotes, deleteNote}) => {
+const NotesList = ({notes, setNotes, deleteNote, editNote}) => {
 
 // create new note
 const addTestNote = () => {
@@ -44,10 +44,12 @@ const addTestNote = () => {
       {notes
       .filter((note) => note.isTrashed === false)
       .map((note) => (
-        <NoteCard key={note.id} 
-        note={note}
-        togglePin={togglePin}
-        deleteNote={deleteNote}
+        <NoteCard 
+          key={note.id} 
+          note={note}
+          togglePin={togglePin}
+          deleteNote={deleteNote}
+          editNote={editNote}
         />
       ))}
 

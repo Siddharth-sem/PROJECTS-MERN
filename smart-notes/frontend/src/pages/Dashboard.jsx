@@ -62,6 +62,12 @@ const permanentDelete = (noteId) => {
   )
 }
 
+
+// edit a note
+const editNote =(noteId)=> {
+
+}
+
   return (
     <div>
       <h1><u>SIDEBAR</u></h1>
@@ -75,6 +81,7 @@ const permanentDelete = (noteId) => {
         notes={notes}
         setNotes={setNotes}
         deleteNote={deleteNote}
+        editNote={editNote}
       />
   
       <h1><u>TRASH</u></h1>
