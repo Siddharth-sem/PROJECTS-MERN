@@ -31,7 +31,7 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote}
       )}
 
 
-      <button obClick={() => editNote}>
+      <button onClick={() => editNote(note.id)}>
         Edit
       </button>
     </div>
