@@ -16,14 +16,14 @@ const addTestNote = () => {
     isTrashed: false
   }
 
-  setNotes([...notes, newNote])
+  setNotes((currNotes) => [...currNotes, newNote])
 }
 
 // pin the note
   const togglePin = (noteId) => {
 
     setNotes(
-      notes.map((note) => {
+      (currNotes) => currNotes.map((note) => {
 
         if (note.id === noteId) {
           return {

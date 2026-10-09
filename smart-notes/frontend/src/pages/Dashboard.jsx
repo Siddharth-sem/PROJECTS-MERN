@@ -39,7 +39,7 @@ const Dashboard = () => {
   // remove the notes nad move to trash
   const deleteNote = (noteId) => {
   setNotes(
-      notes.map((note) => {
+      (currNotes) => currNotes.map((note) => {
 
         if (note.id === noteId) {
           return {
@@ -58,7 +58,7 @@ const Dashboard = () => {
 // permanently delete the note from trash
 const permanentDelete = (noteId) => {
   setNotes(
-    notes.filter((note) => note.id !== noteId)
+    (currNotes) => currNotes.filter((note) => note.id !== noteId)
   )
 }
 

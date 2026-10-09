@@ -1,4 +1,4 @@
-const NoteCard = ({note, togglePin, deleteNote, permanentDelete}
+const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote}
 ) => {
   return (
     <div>
@@ -10,7 +10,8 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete}
         Tags : {note.tags.join(", ")}
       </p>
 
-      {note.isTrashed == false &&(
+      
+      {note.isTrashed === false &&(
       <button onClick={() => togglePin(note.id)}>
         {note.isPinned ? "Unpin" : "Pin"}
       </button>
@@ -28,6 +29,11 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete}
         Remove Permanantely
       </button>
       )}
+
+
+      <button obClick={() => editNote}>
+        Edit
+      </button>
     </div>
   ) 
 }
