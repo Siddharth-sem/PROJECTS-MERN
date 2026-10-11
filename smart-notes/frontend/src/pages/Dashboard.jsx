@@ -38,23 +38,45 @@ const Dashboard = () => {
     ])
 
 
-  // remove the notes nad move to trash
-  const deleteNote = (noteId) => {
+{edit && (
+  <div>
+    <h2>Edit Note</h2>
+    
+    <input
+      type="text"
+      value={edit.title}
+      onChange={(e)=>
+        setEdit({...edit, title : e.target.value})
+      }
+    />
+
+    <textarea
+      value={edit.content}
+      onChange={(e)=>
+        setEdit({...edit, content : e.target.value})
+      }
+    />
+
+  </div>
+)}
+
+// remove the notes nad move to trash
+const deleteNote = (noteId) => {
   setNotes(
-      (currNotes) => currNotes.map((note) => {
+    (currNotes) => currNotes.map((note) => {
 
-        if (note.id === noteId) {
-          return {
-            ...note,
-            isTrashed: !note.isTrashed
-          }
+      if (note.id === noteId) {
+        return {
+          ...note,
+          isTrashed: !note.isTrashed
         }
+      }
 
-        return note
-      })
-    )
+       return note
+    })
+  )
 
-  }
+}
 
 
 // permanently delete the note from trash
@@ -67,11 +89,12 @@ const permanentDelete = (noteId) => {
 
 // edit a note
 const editNote =(noteId)=> {
-  const setNote = notes.find(
+  const selNote = notes.find(
     (note) => note.id === noteId
   )
-  setEdit(setNote)
+  setEdit(selNote)
 }
+
 
   return (
     <div>
