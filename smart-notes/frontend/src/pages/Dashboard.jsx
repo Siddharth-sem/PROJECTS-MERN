@@ -38,27 +38,6 @@ const Dashboard = () => {
     ])
 
 
-{edit && (
-  <div>
-    <h2>Edit Note</h2>
-    
-    <input
-      type="text"
-      value={edit.title}
-      onChange={(e)=>
-        setEdit({...edit, title : e.target.value})
-      }
-    />
-
-    <textarea
-      value={edit.content}
-      onChange={(e)=>
-        setEdit({...edit, content : e.target.value})
-      }
-    />
-
-  </div>
-)}
 
 // remove the notes nad move to trash
 const deleteNote = (noteId) => {
@@ -97,6 +76,8 @@ const editNote =(noteId)=> {
 
 
   return (
+
+    
     <div>
       <h1><u>SIDEBAR</u></h1>
       <Sidebar />
@@ -111,6 +92,25 @@ const editNote =(noteId)=> {
         deleteNote={deleteNote}
         editNote={editNote}
       />
+      {edit && (
+  <div>
+    <h2>Edit Note</h2>
+    
+    <input
+      type="text"
+      value={edit.title}
+      onChange={(e)=>
+        setEdit({...edit, title : e.target.value})
+      }
+    />
+    <textarea
+      value={edit.content}
+      onChange={(e)=>
+        setEdit({...edit, content : e.target.value})
+      }
+    />
+    </div>
+    )}
   
       <h1><u>TRASH</u></h1>
       <Trash 
