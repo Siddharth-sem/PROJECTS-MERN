@@ -124,6 +124,9 @@ const saveEdit = () => {
     <button onClick={saveEdit}>
       Save Changes
     </button>
+    <button onClick={() => setEdit(null)}>
+      Cancel
+    </button>
     </div>
     )}
   
