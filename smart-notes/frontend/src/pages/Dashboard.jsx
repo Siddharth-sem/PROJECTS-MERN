@@ -104,31 +104,31 @@ const saveEdit = () => {
         deleteNote={deleteNote}
         editNote={editNote}
       />
-      {edit && (
-    <div>
-      <h2>Edit Note</h2>
-    
-    <input
-      type="text"
-      value={edit.title}
-      onChange={(e)=>
-        setEdit({...edit, title : e.target.value})
-      }
-    />
-    <textarea
-      value={edit.content}
-      onChange={(e)=>
-        setEdit({...edit, content : e.target.value})
-      }
-    />
-    <button onClick={saveEdit}>
-      Save Changes
-    </button>
-    <button onClick={() => setEdit(null)}>
-      Cancel
-    </button>
-    </div>
-    )}
+      {(edit, note.isTrashed === false) && (
+      <div>
+        <h2>Edit Note</h2>
+      
+      <input
+        type="text"
+        value={edit.title}
+        onChange={(e)=>
+          setEdit({...edit, title : e.target.value})
+        }
+      />
+      <textarea
+        value={edit.content}
+        onChange={(e)=>
+          setEdit({...edit, content : e.target.value})
+        }
+      />
+      <button onClick={saveEdit}>
+        Save Changes
+      </button>
+      <button onClick={() => setEdit(null)}>
+        Cancel
+      </button>
+      </div>
+      )}
   
       <h1><u>TRASH</u></h1>
       <Trash 
