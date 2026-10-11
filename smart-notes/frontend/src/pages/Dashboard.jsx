@@ -8,6 +8,8 @@ import Trash from "../components/Trash"
 
 const Dashboard = () => {
 
+  const [edit, setEdit] = useState(null)
+
   const [notes, setNotes] = useState([
     {
       id: 1,
@@ -65,7 +67,10 @@ const permanentDelete = (noteId) => {
 
 // edit a note
 const editNote =(noteId)=> {
-
+  const setNote = notes.find(
+    (note) => note.id === noteId
+  )
+  setEdit(setNote)
 }
 
   return (
