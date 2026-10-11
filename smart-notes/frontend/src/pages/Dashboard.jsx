@@ -104,7 +104,7 @@ const saveEdit = () => {
         deleteNote={deleteNote}
         editNote={editNote}
       />
-      {(edit, note.isTrashed === false) && (
+      {edit && (
       <div>
         <h2>Edit Note</h2>
       

@@ -31,9 +31,11 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote}
       )}
 
 
+      {note.isTrashed === false &&(
       <button onClick={() => editNote(note.id)}>
         Edit
       </button>
+      )}
     </div>
   ) 
 }
