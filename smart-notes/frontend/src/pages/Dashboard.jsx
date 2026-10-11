@@ -74,6 +74,18 @@ const editNote =(noteId)=> {
   setEdit(selNote)
 }
 
+// save the edited note
+
+const saveEdit = () => {
+  setNotes((currNotes) =>
+    currNotes.map((note) =>
+      note.id === edit.id ? edit : note
+    )
+  )
+
+  setEdit(null)
+}
+
 
   return (
 
@@ -93,8 +105,8 @@ const editNote =(noteId)=> {
         editNote={editNote}
       />
       {edit && (
-  <div>
-    <h2>Edit Note</h2>
+    <div>
+      <h2>Edit Note</h2>
     
     <input
       type="text"
@@ -109,6 +121,9 @@ const editNote =(noteId)=> {
         setEdit({...edit, content : e.target.value})
       }
     />
+    <button onClick={saveEdit}>
+      Save Changes
+    </button>
     </div>
     )}
   
