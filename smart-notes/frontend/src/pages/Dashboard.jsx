@@ -19,7 +19,8 @@ const Dashboard = () => {
       content: "Learning components and props",
       tags: ["React", "Frontend"],
       isPinned: true,
-      isTrashed: false
+      isTrashed: false,
+      isArchived: false
     },
     {
       id: 2,
@@ -27,7 +28,8 @@ const Dashboard = () => {
       content: "Learning MongoDB and databases",
       tags: ["DBMS", "MongoDB"],
       isPinned: false,
-      isTrashed: false
+      isTrashed: false,
+      isArchived: false
     },
     {
       id: 3,
@@ -35,7 +37,8 @@ const Dashboard = () => {
       content: "Ideas for the next hackathon",
       tags: ["Hackathon"],
       isPinned: false,
-      isTrashed: false
+      isTrashed: false,
+      isArchived: false
     }
     ])
 
@@ -57,6 +60,22 @@ const deleteNote = (noteId) => {
     })
   )
 
+}
+
+// make the note archived
+const archiveNote = (noteId) => {
+  setNotes(
+    (currNotes) => currNotes.map((note) => {
+       if (note.id === noteId) {
+          return {
+            ...note,
+            isArchived: !note.isArchived
+          }
+        }
+
+        return note
+    })
+  )
 }
 
 
@@ -109,6 +128,7 @@ const saveEdit = () => {
         deleteNote={deleteNote}
         editNote={editNote}
         search={search}
+        archiveNote={archiveNote}
       />
       {edit && (
       <div>

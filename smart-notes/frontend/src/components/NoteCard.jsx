@@ -1,4 +1,4 @@
-const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote}
+const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote, archiveNote}
 ) => {
   return (
     <div>
@@ -34,6 +34,12 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote}
       {note.isTrashed === false &&(
       <button onClick={() => editNote(note.id)}>
         Edit
+      </button>
+      )}
+
+      {note.isTrashed === false &&(
+      <button onClick={() => archiveNote(note.id)}>
+        archived
       </button>
       )}
     </div>

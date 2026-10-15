@@ -2,7 +2,7 @@
 import NoteCard from "./NoteCard"
 
 
-const NotesList = ({notes, setNotes, deleteNote, editNote, search}) => {
+const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote}) => {
 
 // create new note
 const addTestNote = () => {
@@ -53,6 +53,7 @@ const addTestNote = () => {
           togglePin={togglePin}
           deleteNote={deleteNote}
           editNote={editNote}
+          archiveNote={archiveNote}
         />
       ))}
 
