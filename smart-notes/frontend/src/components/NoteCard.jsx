@@ -39,7 +39,7 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote, archi
 
       {note.isTrashed === false &&(
       <button onClick={() => archiveNote(note.id)}>
-        {note.isArchived ? "Archive" : "Unarchive"}
+        {note.isArchived ? "Unarchive" : "Archive"}
       </button>
       )}
     </div>

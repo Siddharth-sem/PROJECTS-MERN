@@ -13,7 +13,8 @@ const addTestNote = () => {
     content: "This note was added using state.",
     tags: ["Test"],
     isPinned: false,
-    isTrashed: false
+    isTrashed: false,
+    isArchived: false
   }
 
   setNotes((currNotes) => [...currNotes, newNote])
