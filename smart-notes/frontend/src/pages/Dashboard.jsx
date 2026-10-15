@@ -10,6 +10,8 @@ const Dashboard = () => {
 
   const [edit, setEdit] = useState(null)
 
+  const [search, setSearch] =useState("")
+
   const [notes, setNotes] = useState([
     {
       id: 1,
@@ -95,7 +97,10 @@ const saveEdit = () => {
       <Sidebar />
 
       <h1><u>SEARCHBAR</u></h1>
-      <SearchBar />
+      <SearchBar 
+        search={search}
+        setSearch={setSearch}
+      />
 
       <h1><u>NOTELIST</u></h1>
       <NotesList
@@ -103,6 +108,7 @@ const saveEdit = () => {
         setNotes={setNotes}
         deleteNote={deleteNote}
         editNote={editNote}
+        search={search}
       />
       {edit && (
       <div>

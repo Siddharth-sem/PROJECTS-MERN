@@ -2,7 +2,7 @@
 import NoteCard from "./NoteCard"
 
 
-const NotesList = ({notes, setNotes, deleteNote, editNote}) => {
+const NotesList = ({notes, setNotes, deleteNote, editNote, search}) => {
 
 // create new note
 const addTestNote = () => {
@@ -43,6 +43,9 @@ const addTestNote = () => {
     <div>
       {notes
       .filter((note) => note.isTrashed === false)
+      .filter((note) => 
+        note.title.toLowerCase().includes(search.toLowerCase()) ||
+        note.content.toLowerCase().includes(search.toLowerCase()))
       .map((note) => (
         <NoteCard 
           key={note.id} 
