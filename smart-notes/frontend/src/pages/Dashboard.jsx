@@ -5,6 +5,8 @@ import Sidebar from "../components/Sidebar"
 import SearchBar from "../components/SearchBar"
 import NotesList from "../components/NotesList"
 import Trash from "../components/Trash"
+import Archived from "../components/Archived"
+
 
 const Dashboard = () => {
 
@@ -163,6 +165,13 @@ const saveEdit = () => {
         permanentDelete={permanentDelete}
       />
 
+      <h1><u>ARCHIVED NOTES</u></h1>
+      <Archived
+        notes={notes}
+        archiveNote={archiveNote}
+        deleteNote={deleteNote}
+        editNote={editNote}
+      />
     </div>
   )
 }

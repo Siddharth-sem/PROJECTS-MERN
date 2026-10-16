@@ -42,8 +42,10 @@ const addTestNote = () => {
 
   return (
     <div>
-      {notes
+      {[...notes]
       .filter((note) => note.isTrashed === false)
+      .filter((note) => note.isArchived === false)
+      .sort((a,b)=> Number(b.isPinned) - Number(a.isPinned))
       .filter((note) => 
         note.title.toLowerCase().includes(search.toLowerCase()) ||
         note.content.toLowerCase().includes(search.toLowerCase()))
