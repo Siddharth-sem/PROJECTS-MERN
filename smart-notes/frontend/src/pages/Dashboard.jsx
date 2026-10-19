@@ -88,6 +88,23 @@ const permanentDelete = (noteId) => {
   )
 }
 
+// pin the note
+  const togglePin = (noteId) => {
+
+    setNotes(
+      (currNotes) => currNotes.map((note) => {
+
+        if (note.id === noteId) {
+          return {
+            ...note,
+            isPinned: !note.isPinned
+          }
+        }
+
+        return note
+      })
+    )
+  }
 
 // edit a note
 const editNote =(noteId)=> {
@@ -131,6 +148,7 @@ const saveEdit = () => {
         editNote={editNote}
         search={search}
         archiveNote={archiveNote}
+        togglePin={togglePin}
       />
       {edit && (
       <div>
@@ -169,6 +187,7 @@ const saveEdit = () => {
         archiveNote={archiveNote}
         deleteNote={deleteNote}
         editNote={editNote}
+        togglePin={togglePin}
       />
     </div>
   )

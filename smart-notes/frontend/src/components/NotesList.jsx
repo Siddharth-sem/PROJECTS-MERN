@@ -3,7 +3,7 @@ import NoteCard from "./NoteCard"
 import { useState } from "react"
 import NoteForm from "./NoteForm"
 
-const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote}) => {
+const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote, togglePin}) => {
   const [showForm, setShowForm] = useState(false)
 
   const [title, setTitle] = useState("")
@@ -34,24 +34,6 @@ const addTestNote = () => {
   setContent("")
   setShowForm(false)
 }
-
-// pin the note
-  const togglePin = (noteId) => {
-
-    setNotes(
-      (currNotes) => currNotes.map((note) => {
-
-        if (note.id === noteId) {
-          return {
-            ...note,
-            isPinned: !note.isPinned
-          }
-        }
-
-        return note
-      })
-    )
-  }
 
 
 

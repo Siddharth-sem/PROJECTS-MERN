@@ -1,6 +1,6 @@
 import NoteCard from "./NoteCard"
 
-const Archived = ({notes, archiveNote, deleteNote, editNote}) => {
+const Archived = ({notes, archiveNote, deleteNote, editNote, togglePin}) => {
   return (
     <div>
       <h2>Archived Notes</h2>
@@ -14,7 +14,7 @@ const Archived = ({notes, archiveNote, deleteNote, editNote}) => {
                     archiveNote={archiveNote}
                     deleteNote={deleteNote}
                     editNote={editNote}
-
+                    togglePin={togglePin}
                 />
             )}
     </div>
