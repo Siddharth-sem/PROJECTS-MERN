@@ -1,23 +1,37 @@
 
 import NoteCard from "./NoteCard"
-
+import { useState } from "react"
 
 const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote}) => {
+  const [showForm, setShowForm] = useState(false)
 
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
 // create new note
 const addTestNote = () => {
 
+  if(!title.trim() || !content.trim()){
+    alert("Pleast enter n=both title and content")
+    return
+  }
+
+  
+
   const newNote = {
     id: Date.now(),
-    title: "New Test Note",
-    content: "This note was added using state.",
-    tags: ["Test"],
+    title: title,
+    content: content,
+    tags: [],
     isPinned: false,
     isTrashed: false,
     isArchived: false
   }
 
   setNotes((currNotes) => [...currNotes, newNote])
+
+  setTitle("")
+  setContent("")
+  setShowForm(false)
 }
 
 // pin the note
@@ -63,9 +77,43 @@ const addTestNote = () => {
       <br />
       <br />
 
-      <button onClick={addTestNote}>
-        + Add Test Note
+      <button 
+        onClick={() => {
+          if (showForm) {
+            setTitle("")
+            setContent("")
+            setShowForm(false)
+          } else {
+            setShowForm(true)
+          }
+        }}
+      >
+        {showForm ? "Cancel" : "+ Create Note"}
       </button>
+
+      {showForm && (
+        <div>
+          <h3>Create New Note</h3>
+
+          <input
+            type="text"
+            placeholder="Enter note title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
+          <textarea
+            placeholder="Write your note..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+
+          <button onClick={addTestNote}>
+            Save Note
+          </button>
+        </div>
+      )}
+
     </div>
   )
 }
