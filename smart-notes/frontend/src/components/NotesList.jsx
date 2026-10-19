@@ -1,6 +1,7 @@
 
 import NoteCard from "./NoteCard"
 import { useState } from "react"
+import NoteForm from "./NoteForm"
 
 const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote}) => {
   const [showForm, setShowForm] = useState(false)
@@ -93,20 +94,16 @@ const addTestNote = () => {
 
       {showForm && (
         <div>
-          <h3>Create New Note</h3>
+        
+        <h2>Create Note</h2>
 
-          <input
-            type="text"
-            placeholder="Enter note title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-
-          <textarea
-            placeholder="Write your note..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+        <NoteForm
+          title ={title}
+          setTitle={setTitle}
+          content={content}
+          setContent={setContent}
+        />
+       
 
           <button onClick={addTestNote}>
             Save Note

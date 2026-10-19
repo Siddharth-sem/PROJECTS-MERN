@@ -6,7 +6,7 @@ import SearchBar from "../components/SearchBar"
 import NotesList from "../components/NotesList"
 import Trash from "../components/Trash"
 import Archived from "../components/Archived"
-
+import NoteForm from "../components/NoteForm"
 
 const Dashboard = () => {
 
@@ -136,20 +136,18 @@ const saveEdit = () => {
       <div>
         <h2>Edit Note</h2>
       
-      <input
-        type="text"
-        value={edit.title}
-        onChange={(e)=>
-          setEdit({...edit, title : e.target.value})
+      <NoteForm
+        title={edit.title}
+        setTitle={(newTitle) =>
+          setEdit({ ...edit, title: newTitle })
+        }
+        content={edit.content}
+        setContent={(newContent) =>
+          setEdit({ ...edit, content: newContent })
         }
       />
-      <textarea
-        value={edit.content}
-        onChange={(e)=>
-          setEdit({...edit, content : e.target.value})
-        }
-      />
-      <button onClick={saveEdit}>
+
+      <button onClick={saveEdit }>
         Save Changes
       </button>
       <button onClick={() => setEdit(null)}>
