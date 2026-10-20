@@ -143,13 +143,12 @@ const saveEdit = () => {
 
     
     <div>
-      <h1><u>SIDEBAR</u></h1>
+
       <Sidebar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
 
-      <h1><u>SEARCHBAR</u></h1>
       <SearchBar 
         search={search}
         setSearch={setSearch}
@@ -214,7 +213,6 @@ const saveEdit = () => {
         archiveNote={archiveNote}
         deleteNote={deleteNote}
         editNote={editNote}
-        togglePin={togglePin}
       />
       )}
     </div>

@@ -2,14 +2,13 @@
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const sections = [
     { label: "All Notes", value: "all" },
-    { label: "Pinned", value: "pinned" },
     { label: "Archived", value: "archived" },
     { label: "Trash", value: "trash" }
   ]
 
   return (
     <div>
-      <h2>Smart Notes</h2>
+      <h1>Smart Notes</h1>
 
       {sections.map((section) => (
         <button
