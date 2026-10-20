@@ -14,6 +14,8 @@ const Dashboard = () => {
 
   const [search, setSearch] =useState("")
 
+  const [activeSection, setActiveSection] = useState("all")
+
   const [notes, setNotes] = useState(() => {
   const savedNotes = localStorage.getItem("smart-notes")
 
@@ -51,7 +53,7 @@ const Dashboard = () => {
     }
   ]
     })
-    useEffect(() => {
+  useEffect(() => {
   localStorage.setItem("smart-notes", JSON.stringify(notes))
   }, [notes])
 
@@ -142,7 +144,10 @@ const saveEdit = () => {
     
     <div>
       <h1><u>SIDEBAR</u></h1>
-      <Sidebar />
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
 
       <h1><u>SEARCHBAR</u></h1>
       <SearchBar 
@@ -150,7 +155,14 @@ const saveEdit = () => {
         setSearch={setSearch}
       />
 
-      <h1><u>NOTELIST</u></h1>
+      <h2>
+        {activeSection === "all" && "All Notes"}
+        {activeSection === "pinned" && "Pinned Notes"}
+        {activeSection === "archived" && "Archived Notes"}
+        {activeSection === "trash" && "Trash"}
+      </h2>
+
+      {activeSection === "all" && (
       <NotesList
         notes={notes}
         setNotes={setNotes}
@@ -160,6 +172,7 @@ const saveEdit = () => {
         archiveNote={archiveNote}
         togglePin={togglePin}
       />
+      )}
       {edit && (
       <div>
         <h2>Edit Note</h2>
@@ -184,14 +197,18 @@ const saveEdit = () => {
       </div>
       )}
   
-      <h1><u>TRASH</u></h1>
-      <Trash 
-        notes ={notes}
-        deleteNote ={deleteNote}
+
+      {activeSection === "trash" && (
+      <Trash
+        notes={notes}
+        deleteNote={deleteNote}
         permanentDelete={permanentDelete}
       />
+      )}
 
-      <h1><u>ARCHIVED NOTES</u></h1>
+      
+      {activeSection === "archived" && (
+        
       <Archived
         notes={notes}
         archiveNote={archiveNote}
@@ -199,6 +216,7 @@ const saveEdit = () => {
         editNote={editNote}
         togglePin={togglePin}
       />
+      )}
     </div>
   )
 }

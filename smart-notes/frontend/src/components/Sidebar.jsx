@@ -1,11 +1,31 @@
-const Sidebar = () => {
+
+const Sidebar = ({ activeSection, setActiveSection }) => {
+  const sections = [
+    { label: "All Notes", value: "all" },
+    { label: "Pinned", value: "pinned" },
+    { label: "Archived", value: "archived" },
+    { label: "Trash", value: "trash" }
+  ]
+
   return (
-    <aside>
-      <p>All Notes</p>
-      <p>Pinned</p>
-      <p>Archived</p>
-      <p>Trash</p>
-    </aside>
+    <div>
+      <h2>Smart Notes</h2>
+
+      {sections.map((section) => (
+        <button
+          key={section.value}
+          onClick={() => setActiveSection(section.value)}
+          style={{
+            fontWeight:
+              activeSection === section.value
+                ? "bold"
+                : "normal"
+          }}
+        >
+          {section.label}
+        </button>
+      ))}
+    </div>
   )
 }
 

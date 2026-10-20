@@ -3,7 +3,7 @@ import NoteCard from "./NoteCard"
 const Archived = ({notes, archiveNote, deleteNote, editNote, togglePin}) => {
   return (
     <div>
-      <h2>Archived Notes</h2>
+     
 
         {notes
             .filter((note) => note.isArchived === true && note.isTrashed === false)
