@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useEffect} from "react"
 
 // import NavBar from "../components/NavBar"
 import Sidebar from "../components/Sidebar"
@@ -14,7 +14,14 @@ const Dashboard = () => {
 
   const [search, setSearch] =useState("")
 
-  const [notes, setNotes] = useState([
+  const [notes, setNotes] = useState(() => {
+  const savedNotes = localStorage.getItem("smart-notes")
+
+  if (savedNotes) {
+    return JSON.parse(savedNotes)
+  }
+
+  return [
     {
       id: 1,
       title: "React Notes",
@@ -42,8 +49,11 @@ const Dashboard = () => {
       isTrashed: false,
       isArchived: false
     }
-    ])
-
+  ]
+    })
+    useEffect(() => {
+  localStorage.setItem("smart-notes", JSON.stringify(notes))
+  }, [notes])
 
 
 // remove the notes nad move to trash
