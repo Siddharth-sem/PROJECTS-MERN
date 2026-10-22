@@ -3,7 +3,8 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   const sections = [
     { label: "All Notes", value: "all" },
     { label: "Archived", value: "archived" },
-    { label: "Trash", value: "trash" }
+    { label: "Trash", value: "trash" },
+    { label: "Tags", value: "tags" }
   ]
 
   return (

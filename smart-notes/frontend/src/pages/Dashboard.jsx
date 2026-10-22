@@ -18,6 +18,7 @@ const Dashboard = () => {
 
   const [notes, setNotes] = useState(() => {
   const savedNotes = localStorage.getItem("smart-notes")
+  const allTags = [...new Set(notes.flatMap((note) => note.tags))]
 
   if (savedNotes) {
     return JSON.parse(savedNotes)
@@ -159,7 +160,18 @@ const saveEdit = () => {
         {activeSection === "pinned" && "Pinned Notes"}
         {activeSection === "archived" && "Archived Notes"}
         {activeSection === "trash" && "Trash"}
+        {activeSection === "tags" && "Tags"}
       </h2>
+
+      {activeSection === "tags" && (
+      <div>
+        {allTags.map((tag) => (
+          <button key={tag}>
+            {tag}
+          </button>
+        ))}
+      </div>
+      )}
 
       {activeSection === "all" && (
       <NotesList

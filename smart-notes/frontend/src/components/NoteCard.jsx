@@ -11,7 +11,7 @@ const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote, archi
       </p>
 
       
-      {note.isTrashed === false &&(
+      {note.isTrashed === false && togglePin && (
       <button onClick={() => togglePin(note.id)}>
         {note.isPinned ? "Unpin" : "Pin"}
       </button>
