@@ -22,6 +22,8 @@ const Dashboard = () => {
 
   const [notes, setNotes] = useState(() => {
   const savedNotes = localStorage.getItem("smart-notes")
+
+  
   
 
   if (savedNotes) {
@@ -127,11 +129,13 @@ const permanentDelete = (noteId) => {
   }
 
 // edit a note
+const [editTags, setEditTags] = useState("");
 const editNote =(noteId)=> {
   const selNote = notes.find(
     (note) => note.id === noteId
   )
   setEdit(selNote)
+  setEditTags(selNote.tags.join(", "));
 }
 
 // save the edited note
@@ -227,6 +231,12 @@ const saveEdit = () => {
         setContent={(newContent) =>
           setEdit({ ...edit, content: newContent })
         }
+      />
+      <input
+        type="text"
+        placeholder="Enter tags (comma separated)"
+        value={editTags}
+        onChange={(e) => setEditTags(e.target.value)}
       />
 
       <button onClick={saveEdit }>
