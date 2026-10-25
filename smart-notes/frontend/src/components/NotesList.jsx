@@ -23,7 +23,10 @@ const addTestNote = () => {
     id: Date.now(),
     title: title,
     content: content,
-    tags: tags.split(",").map((tag)=> tag.trim().filter((tag)=>tag !== "")),
+    tags: tags
+      .split(",")
+      .map((tag)=> tag.trim())
+      .filter((tag)=>tag !== ""),
     isPinned: false,
     isTrashed: false,
     isArchived: false
