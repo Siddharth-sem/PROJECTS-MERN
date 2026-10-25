@@ -67,6 +67,11 @@ const Dashboard = () => {
   localStorage.setItem("smart-notes", JSON.stringify(notes))
   }, [notes])
 
+  // Close edit form when sidebar section changes
+  useEffect(() => {
+    setEdit(null)
+    setEditTags("")
+  }, [activeSection])
 
 // remove the notes nad move to trash
 const deleteNote = (noteId) => {
