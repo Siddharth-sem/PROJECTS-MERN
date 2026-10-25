@@ -7,6 +7,8 @@ import NotesList from "../components/NotesList"
 import Trash from "../components/Trash"
 import Archived from "../components/Archived"
 import NoteForm from "../components/NoteForm"
+import NoteCard from "../components/NoteCard"
+
 
 const Dashboard = () => {
 
@@ -181,18 +183,25 @@ const saveEdit = () => {
       </div>
       )}
 
+      {activeSection === "tags" && selectedTag && (
       <div>
-        <h3>{selectedTag} Notes</h3>
+        <h3><u>{selectedTag} Notes</u></h3>
 
         {notes
-          .filter((note) => note.tags.includes(selectedTag))
+          .filter((note) => note.tags.includes(selectedTag) && note.isTrashed === false && note.isArchived === false)
           .map((note) => (
-            <div key={note.id}>
-              <h4>{note.title}</h4>
-              <p>{note.content}</p>
-            </div>
+            <NoteCard
+              key={note.id}
+              note={note}
+              togglePin={togglePin}
+              deleteNote={deleteNote}
+              permanentDelete={permanentDelete}
+              editNote={editNote}
+              archiveNote={archiveNote}
+            />
           ))}
       </div>
+      )}
 
       {activeSection === "all" && (
       <NotesList

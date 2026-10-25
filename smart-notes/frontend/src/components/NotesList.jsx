@@ -8,6 +8,7 @@ const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote, 
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const [tags, setTags] = useState("")
 // create new note
 const addTestNote = () => {
 
@@ -22,7 +23,7 @@ const addTestNote = () => {
     id: Date.now(),
     title: title,
     content: content,
-    tags: [],
+    tags: tags.split(",").map((tag)=> tag.trim().filter((tag)=>tag !== "")),
     isPinned: false,
     isTrashed: false,
     isArchived: false
@@ -32,6 +33,7 @@ const addTestNote = () => {
 
   setTitle("")
   setContent("")
+  setTags("")
   setShowForm(false)
 }
 
@@ -84,6 +86,13 @@ const addTestNote = () => {
           setTitle={setTitle}
           content={content}
           setContent={setContent}
+        />
+
+        <input
+          type="text"
+          placeholder="Enter tags(comma separated)"
+          value={tags}
+          onChange={(e)=>setTags(e.target.value)}
         />
        
 
