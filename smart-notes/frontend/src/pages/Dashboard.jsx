@@ -143,7 +143,15 @@ const editNote =(noteId)=> {
 const saveEdit = () => {
   setNotes((currNotes) =>
     currNotes.map((note) =>
-      note.id === edit.id ? edit : note
+      note.id === edit.id
+      ? {
+          ...edit,
+          tags: editTags
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter((tag) => tag !== "")
+        }
+      : note
     )
   )
 
