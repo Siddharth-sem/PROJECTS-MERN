@@ -14,6 +14,8 @@ const Dashboard = () => {
 
   const [edit, setEdit] = useState(null)
 
+  const [editTags, setEditTags] = useState("");
+
   const [search, setSearch] =useState("")
 
   const [activeSection, setActiveSection] = useState("all")
@@ -61,17 +63,19 @@ const Dashboard = () => {
   ]
     })
 
-  const allTags = [...new Set(notes.flatMap((note) => note.tags))]
+  const allTags = [
+    ...new Map(
+      notes
+        .flatMap((note) => note.tags)
+        .map((tag) => [tag.trim().toLowerCase(), tag.trim()])
+    ).values()
+  ]
 
   useEffect(() => {
   localStorage.setItem("smart-notes", JSON.stringify(notes))
   }, [notes])
 
-  // Close edit form when sidebar section changes
-  useEffect(() => {
-    setEdit(null)
-    setEditTags("")
-  }, [activeSection])
+
 
 // remove the notes nad move to trash
 const deleteNote = (noteId) => {
@@ -134,7 +138,6 @@ const permanentDelete = (noteId) => {
   }
 
 // edit a note
-const [editTags, setEditTags] = useState("");
 const editNote =(noteId)=> {
   const selNote = notes.find(
     (note) => note.id === noteId
@@ -163,6 +166,11 @@ const saveEdit = () => {
   setEdit(null)
 }
 
+const handleSectionChange = (section) => {
+  setEdit(null);
+  setEditTags("");
+  setActiveSection(section);
+};
 
   return (
 
@@ -171,7 +179,7 @@ const saveEdit = () => {
 
       <Sidebar
         activeSection={activeSection}
-        setActiveSection={setActiveSection}
+        setActiveSection={handleSectionChange}
       />
 
       <SearchBar 
@@ -205,7 +213,11 @@ const saveEdit = () => {
         <h3><u>{selectedTag} Notes</u></h3>
 
         {notes
-          .filter((note) => note.tags.includes(selectedTag) && note.isTrashed === false && note.isArchived === false)
+          .filter((note) => note.tags.some(
+                                        (tag) => tag.trim().toLowerCase() === selectedTag.toLowerCase()
+                                      ) 
+                                      && note.isTrashed === false 
+                                      && note.isArchived === false)
           .map((note) => (
             <NoteCard
               key={note.id}
@@ -231,7 +243,7 @@ const saveEdit = () => {
         togglePin={togglePin}
       />
       )}
-      {edit && (
+      {edit && activeSection !== "trash" &&(
       <div>
         <h2>Edit Note</h2>
       
