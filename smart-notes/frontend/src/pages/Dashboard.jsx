@@ -16,9 +16,11 @@ const Dashboard = () => {
 
   const [activeSection, setActiveSection] = useState("all")
 
+  const [selectedTag, setSelectedTag] = useState(null)
+
   const [notes, setNotes] = useState(() => {
   const savedNotes = localStorage.getItem("smart-notes")
-  const allTags = [...new Set(notes.flatMap((note) => note.tags))]
+  
 
   if (savedNotes) {
     return JSON.parse(savedNotes)
@@ -54,6 +56,9 @@ const Dashboard = () => {
     }
   ]
     })
+
+  const allTags = [...new Set(notes.flatMap((note) => note.tags))]
+
   useEffect(() => {
   localStorage.setItem("smart-notes", JSON.stringify(notes))
   }, [notes])
@@ -166,12 +171,28 @@ const saveEdit = () => {
       {activeSection === "tags" && (
       <div>
         {allTags.map((tag) => (
-          <button key={tag}>
+          <button 
+          key={tag}
+          onClick={()=> setSelectedTag(tag)}
+          >
             {tag}
           </button>
         ))}
       </div>
       )}
+
+      <div>
+        <h3>{selectedTag} Notes</h3>
+
+        {notes
+          .filter((note) => note.tags.includes(selectedTag))
+          .map((note) => (
+            <div key={note.id}>
+              <h4>{note.title}</h4>
+              <p>{note.content}</p>
+            </div>
+          ))}
+      </div>
 
       {activeSection === "all" && (
       <NotesList
