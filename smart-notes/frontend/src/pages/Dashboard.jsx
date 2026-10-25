@@ -67,7 +67,15 @@ const Dashboard = () => {
     ...new Map(
       notes
         .flatMap((note) => note.tags)
-        .map((tag) => [tag.trim().toLowerCase(), tag.trim()])
+        .map((tag) => {
+          const cleanTag = tag.trim();
+          const key = cleanTag.toLowerCase();
+          const displayTag =
+            cleanTag.charAt(0).toUpperCase() +
+            cleanTag.slice(1).toLowerCase();
+
+          return [key, displayTag];
+        })
     ).values()
   ]
 

@@ -23,10 +23,18 @@ const addTestNote = () => {
     id: Date.now(),
     title: title,
     content: content,
-    tags: tags
-      .split(",")
-      .map((tag)=> tag.trim())
-      .filter((tag)=>tag !== ""),
+    tags: [
+      ...new Map(
+        tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag !== "")
+          .map((tag) => [
+            tag.toLowerCase(),
+            tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+          ])
+      ).values()
+    ],
     isPinned: false,
     isTrashed: false,
     isArchived: false
