@@ -184,6 +184,7 @@ const saveEdit = () => {
   )
 
   setEdit(null)
+  setEditTags("")
 }
 
 const handleSectionChange = (section) => {

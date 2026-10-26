@@ -8,12 +8,14 @@ const NoteForm = ({title, setTitle, content, setContent}) => {
   return (
     <div>
       
-      <input
-        type="text"
-        placeholder="Enter note title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      {!isPreview && (
+        <input
+          type="text"
+          placeholder="Enter note title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      )}
 
       {!isPreview && (
         <textarea
@@ -24,10 +26,12 @@ const NoteForm = ({title, setTitle, content, setContent}) => {
       )}
       
 
-      {/* <h3>Preview</h3> */}
       {isPreview && (
-        
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <div>
+          <h2><u>Preview</u></h2>
+          <h2>{title}</h2>
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>  
       )}
 
       <button onClick={() => setIsPreview(!isPreview)}>
