@@ -269,6 +269,7 @@ const handleSectionChange = (section) => {
         <h2>Edit Note</h2>
       
       <NoteForm
+        key={edit.id}
         title={edit.title}
         setTitle={(newTitle) =>
           setEdit({ ...edit, title: newTitle })
@@ -288,7 +289,10 @@ const handleSectionChange = (section) => {
       <button onClick={saveEdit }>
         Save Changes
       </button>
-      <button onClick={() => setEdit(null)}>
+      <button onClick={() => {
+        setEdit(null)
+        setEditTags("")
+      }}>
         Cancel
       </button>
       </div>
