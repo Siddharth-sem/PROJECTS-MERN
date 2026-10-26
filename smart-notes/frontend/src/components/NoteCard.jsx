@@ -1,10 +1,12 @@
+import ReactMarkdown from "react-markdown";
+
 const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote, archiveNote}
 ) => {
   return (
     <div>
       <h3>{note.title}</h3>
 
-      <p>{note.content}</p>
+      <ReactMarkdown>{note.content}</ReactMarkdown>
 
       <p>
         Tags : {note.tags.join(", ")}
