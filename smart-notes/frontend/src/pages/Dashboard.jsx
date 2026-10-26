@@ -166,10 +166,18 @@ const saveEdit = () => {
       note.id === edit.id
       ? {
           ...edit,
-          tags: editTags
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag !== "")
+          tags: [
+            ...new Map(
+              editTags
+                .split(",")
+                .map((tag) => tag.trim())
+                .filter((tag) => tag !== "")
+                .map((tag) => [
+                  tag.toLowerCase(),
+                  tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+                ])
+            ).values()
+          ]
         }
       : note
     )
