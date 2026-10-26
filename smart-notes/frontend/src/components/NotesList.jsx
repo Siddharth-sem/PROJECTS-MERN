@@ -13,7 +13,7 @@ const NotesList = ({notes, setNotes, deleteNote, editNote, search, archiveNote, 
 const addTestNote = () => {
 
   if(!title.trim() || !content.trim()){
-    alert("Pleast enter n=both title and content")
+    alert("Pleast enter both title and content")
     return
   }
 

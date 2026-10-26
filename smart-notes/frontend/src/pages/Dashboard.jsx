@@ -157,6 +157,10 @@ const editNote =(noteId)=> {
 // save the edited note
 
 const saveEdit = () => {
+  if (!edit.title.trim() || !edit.content.trim()) {
+    alert("Please enter both title and content");
+    return;
+  }
   setNotes((currNotes) =>
     currNotes.map((note) =>
       note.id === edit.id
