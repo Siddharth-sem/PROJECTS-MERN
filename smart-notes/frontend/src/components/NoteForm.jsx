@@ -21,7 +21,7 @@ const NoteForm = ({title, setTitle, content, setContent}) => {
 
       {!isPreview && (
         <textarea
-          className="npte-content-input"
+          className="note-preview"
           placeholder="Write your note..."
           value={content}
           onChange={(e) => setContent(e.target.value)}

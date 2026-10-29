@@ -22,21 +22,47 @@ const Dashboard = () => {
 
   const [selectedTag, setSelectedTag] = useState(null)
 
-  const [notes, setNotes] = useState(() => {
-    try{
-      const savedNotes = localStorage.getItem("smart-notes")
-      return savedNotes ? JSON.parse(savedNotes) : []
-    } catch (error) {
-      console.error("Failed to load notes:", error)
-      return []
-    }
   
-    })
+  const [notes, setNotes] = useState(() => {
+    try {
+      const savedNotes = localStorage.getItem("smart-notes");
+
+      if (savedNotes === null) {
+        return [];
+      }
+
+      const parsedNotes = JSON.parse(savedNotes);
+
+      if (!Array.isArray(parsedNotes)) {
+        console.error("Saved notes data is not an array.");
+        return [];
+      }
+
+      const validNotes = parsedNotes.filter(
+        (note) =>
+          note &&
+          typeof note === "object" &&
+          !Array.isArray(note) &&
+          typeof note.id === "number" &&
+          typeof note.title === "string" &&
+          typeof note.content === "string" &&
+          Array.isArray(note.tags)
+      );
+
+      return validNotes;
+    } catch (error) {
+      console.error("Failed to load notes:", error);
+      return [];
+    }
+  });
+
 
   const allTags = [
     ...new Map(
       notes
-        .flatMap((note) => note.tags)
+        .flatMap((note) =>
+          Array.isArray(note.tags) ? note.tags : []
+        )
         .map((tag) => {
           const cleanTag = tag.trim();
           const key = cleanTag.toLowerCase();
