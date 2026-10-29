@@ -23,44 +23,14 @@ const Dashboard = () => {
   const [selectedTag, setSelectedTag] = useState(null)
 
   const [notes, setNotes] = useState(() => {
-  const savedNotes = localStorage.getItem("smart-notes")
-
-  
-  
-
-  if (savedNotes) {
-    return JSON.parse(savedNotes)
-  }
-
-  return [
-    {
-      id: 1,
-      title: "React Notes",
-      content: "Learning components and props",
-      tags: ["React", "Frontend"],
-      isPinned: true,
-      isTrashed: false,
-      isArchived: false
-    },
-    {
-      id: 2,
-      title: "DBMS",
-      content: "Learning MongoDB and databases",
-      tags: ["DBMS", "MongoDB"],
-      isPinned: false,
-      isTrashed: false,
-      isArchived: false
-    },
-    {
-      id: 3,
-      title: "Hackathon Ideas",
-      content: "Ideas for the next hackathon",
-      tags: ["Hackathon"],
-      isPinned: false,
-      isTrashed: false,
-      isArchived: false
+    try{
+      const savedNotes = localStorage.getItem("smart-notes")
+      return savedNotes ? JSON.parse(savedNotes) : []
+    } catch (error) {
+      console.error("Failed to load notes:", error)
+      return []
     }
-  ]
+  
     })
 
   const allTags = [
