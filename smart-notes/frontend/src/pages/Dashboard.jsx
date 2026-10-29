@@ -76,8 +76,13 @@ const Dashboard = () => {
   ]
 
   useEffect(() => {
-  localStorage.setItem("smart-notes", JSON.stringify(notes))
-  }, [notes])
+    try {
+      localStorage.setItem("smart-notes", JSON.stringify(notes));
+    } catch (error) {
+      console.error("Failed to save notes:", error);
+      alert("Unable to save notes. Browser storage may be unavailable or full.");
+    }
+  }, [notes]);
 
 
 
