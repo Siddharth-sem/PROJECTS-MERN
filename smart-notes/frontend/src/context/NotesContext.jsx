@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { NotesContext } from "./NotesContext";
 
+export const useNotes = () => useContext(NotesContext);
 export const NotesContext = createContext();
 
 export const NotesProvider = ({ children }) => {
@@ -114,4 +117,3 @@ export const NotesProvider = ({ children }) => {
     </NotesContext.Provider>
   );
 };
-
