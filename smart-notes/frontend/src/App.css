@@ -254,29 +254,40 @@
   }
 
   .sidebar {
-    position: relative;
-    width: 100%;
-    min-height: auto;
-    padding: 16px;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: auto;
+  padding: 16px;
+  border-right: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+    .sidebar-logo {
+    margin-bottom: 18px;
+    }
+
 
   .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
   .sidebar-link {
     width: auto;
   }
 
   .sidebar-bottom {
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
   .dashboard-main {
     margin-left: 0;
     width: 100%;
