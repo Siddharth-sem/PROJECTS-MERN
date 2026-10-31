@@ -56,7 +56,7 @@
   color: var(--text-primary);
 }
 
-.sidebar-link.active e,
+.sidebar-link.active,
 .pinned-label{
   background: var(--primary);
   color: #ffffff;
@@ -151,8 +151,6 @@
 }
 
 .pinned-label {
-  background: #eef2ff;
-  color: var(--primary);
   padding: 4px 9px;
   border-radius: 20px;
   font-size: 12px;
@@ -219,6 +217,7 @@
 
 .notes-list-container {
   width: 100%;
+  padding-bottom: 90px;
 }
 
 .notes-grid {
@@ -245,9 +244,9 @@
 
 /* Mobile */
 @media (max-width: 600px) {
-  .notes-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .floating-create-btn {
+    left: 50%;
+    bottom: 20px;
   }
 }
 
