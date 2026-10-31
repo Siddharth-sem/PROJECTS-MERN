@@ -1,8 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { useContext } from "react";
-import { NotesContext } from "./NotesContext";
+/* eslint-disable react-refresh/only-export-components */
 
-export const useNotes = () => useContext(NotesContext);
+import { createContext, useEffect, useState } from "react";
+
 export const NotesContext = createContext();
 
 export const NotesProvider = ({ children }) => {
