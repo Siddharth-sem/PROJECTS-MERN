@@ -114,7 +114,28 @@
 .preview-markdown {
   font-size: 16px;
   line-height: 1.8;
+  color: var(--text-primary);
   overflow-wrap: anywhere;
+}
+
+.preview-markdown p {
+  white-space: pre-wrap;
+  margin: 0 0 20px;
+}
+
+.preview-markdown h1 {
+  font-size: 2em;
+  margin: 28px 0 16px;
+}
+
+.preview-markdown h2 {
+  font-size: 1.6em;
+  margin: 26px 0 14px;
+}
+
+.preview-markdown h3 {
+  font-size: 1.3em;
+  margin: 22px 0 12px;
 }
 
 .preview-markdown h1,
@@ -125,6 +146,7 @@
 
 .preview-markdown pre {
   padding: 16px;
+  margin: 18px 0;
   overflow-x: auto;
   border-radius: 8px;
   background: var(--bg-card);
@@ -136,11 +158,35 @@
 }
 
 .preview-markdown blockquote {
-  margin-left: 0;
-  padding-left: 16px;
+  margin: 20px 0;
+  padding: 12px 18px;
   border-left: 4px solid var(--primary);
+  background: var(--bg-card);
   color: var(--text-secondary);
 }
+
+.preview-markdown ul,
+.preview-markdown ol {
+  padding-left: 28px;
+  margin: 14px 0 22px;
+}
+
+.preview-markdown li {
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+.preview-markdown hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 28px 0;
+}
+
+/* Links */
+.preview-markdown a {
+  color: var(--primary);
+  text-decoration: underline;
+}       
 
 .preview-title-input {
   display: block;
