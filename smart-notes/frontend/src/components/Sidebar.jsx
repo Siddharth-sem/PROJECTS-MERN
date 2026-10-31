@@ -27,7 +27,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
       </nav>
 
       <div className="sidebar-bottom">
-        <Link to="/editor" className="sidebar-link">
+        <Link to="/editor/new" className="sidebar-link">
           Note Editor
         </Link>
 

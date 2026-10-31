@@ -1,20 +1,31 @@
-
 import ReactMarkdown from "react-markdown";
+import { useNavigate } from "react-router-dom";
 
 const NoteCard = ({
   note,
   togglePin,
-  deleteNote,
+  toggleArchive,
+  toggleTrash,
   permanentDelete,
-  editNote,
-  archiveNote
 }) => {
-  return (
-    <div className="note-card">
+  const navigate = useNavigate();
 
+  const openNote = () => {
+    navigate(`/notes/${note.id}`);
+  };
+
+  return (
+    <div
+      className="note-card"
+      onClick={openNote}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") openNote();
+      }}
+    >
       <div className="note-card-header">
         <h3 className="note-card-title">{note.title}</h3>
-
         {note.isPinned && (
           <span className="pinned-label">Pinned</span>
         )}
@@ -33,50 +44,53 @@ const NoteCard = ({
       </div>
 
       <div className="note-card-actions">
-
-        {note.isTrashed === false && togglePin && (
+        {!note.isTrashed && togglePin && (
           <button
             className="note-action-btn"
-            onClick={() => togglePin(note.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              togglePin(note.id);
+            }}
           >
             {note.isPinned ? "Unpin" : "Pin"}
           </button>
         )}
 
-        <button
-          className="note-action-btn"
-          onClick={() => deleteNote(note.id)}
-        >
-          {note.isTrashed ? "Restore" : "Trash"}
-        </button>
-
-        {note.isTrashed && (
-          <button
-            className="note-action-btn danger"
-            onClick={() => permanentDelete(note.id)}
-          >
-            Delete Permanently
-          </button>
-        )}
-
-        {note.isTrashed === false && editNote && (
+        {!note.isTrashed && toggleArchive && (
           <button
             className="note-action-btn"
-            onClick={() => editNote(note.id)}
-          >
-            Edit
-          </button>
-        )}
-
-        {note.isTrashed === false && archiveNote && (
-          <button
-            className="note-action-btn"
-            onClick={() => archiveNote(note.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleArchive(note.id);
+            }}
           >
             {note.isArchived ? "Unarchive" : "Archive"}
           </button>
         )}
 
+        {toggleTrash && (
+          <button
+            className="note-action-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleTrash(note.id);
+            }}
+          >
+            {note.isTrashed ? "Restore" : "Trash"}
+          </button>
+        )}
+
+        {note.isTrashed && permanentDelete && (
+          <button
+            className="note-action-btn danger"
+            onClick={(e) => {
+              e.stopPropagation();
+              permanentDelete(note.id);
+            }}
+          >
+            Delete Permanently
+          </button>
+        )}
       </div>
     </div>
   );

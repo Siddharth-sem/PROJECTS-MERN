@@ -1,29 +1,26 @@
-import NoteCard from "./NoteCard"
+import NoteCard from "./NoteCard";
 
-const Archived = ({notes, archiveNote, deleteNote, editNote}) => {
+const Archived = ({ notes, toggleArchive, toggleTrash }) => {
+  const archivedNotes = notes.filter(
+    (note) => note.isArchived && !note.isTrashed
+  );
+
   return (
     <div className="notes-grid">
-      {notes.filter(
-        (note) => note.isArchived === true && note.isTrashed === false
-      ).length > 0 ? (
-        notes
-          .filter(
-            (note) => note.isArchived === true && note.isTrashed === false
-          )
-          .map((note) => (
-            <NoteCard
-              key={note.id}
-              note={note}
-              archiveNote={archiveNote}
-              deleteNote={deleteNote}
-              editNote={editNote}
-            />
-          ))
+      {archivedNotes.length > 0 ? (
+        archivedNotes.map((note) => (
+          <NoteCard
+            key={note.id}
+            note={note}
+            toggleArchive={toggleArchive}
+            toggleTrash={toggleTrash}
+          />
+        ))
       ) : (
         <p className="empty-state">No archived notes yet.</p>
       )}
     </div>
   );
-}
+};
 
-export default Archived
+export default Archived;
