@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useNotes } from "../context/useNotes";
@@ -13,13 +12,16 @@ const NoteEditor = ({ theme, toggleTheme }) => {
   const [tags, setTags] = useState("");
 
   const contentRef = useRef(null);
+  const savingRef = useRef(false);
 
+  // Format selected text
   const formatText = (before, after = before) => {
     const textarea = contentRef.current;
     if (!textarea) return;
 
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
+
     const selectedText = content.substring(start, end);
     const selected = selectedText || "text";
 
@@ -41,6 +43,7 @@ const NoteEditor = ({ theme, toggleTheme }) => {
     });
   };
 
+  // Insert heading or list prefix
   const insertLine = (prefix) => {
     const textarea = contentRef.current;
     if (!textarea) return;
@@ -64,13 +67,9 @@ const NoteEditor = ({ theme, toggleTheme }) => {
     });
   };
 
-  const handleSave = () => {
-    if (!title.trim() || !content.trim()) {
-      alert("Please enter both title and content.");
-      return;
-    }
-
-    const cleanTags = [
+  // Clean and format tags
+  const getCleanTags = () => {
+    return [
       ...new Map(
         tags
           .split(",")
@@ -83,28 +82,64 @@ const NoteEditor = ({ theme, toggleTheme }) => {
           ])
       ).values(),
     ];
+  };
 
-    const newNoteId = addNote({
-      title: title.trim(),
-      content,
-      tags: cleanTags,
-    });
+  // Save note
+  const handleSave = () => {
+    if (savingRef.current) return;
 
-    navigate(`/notes/${newNoteId}`);
+    if (!title.trim() || !content.trim()) {
+      alert("Please enter both title and content.");
+      return;
+    }
+
+    savingRef.current = true;
+
+    try {
+      const newNoteId = addNote({
+        title: title.trim(),
+        content: content,
+        tags: getCleanTags(),
+      });
+
+      navigate(`/notes/${newNoteId}`, { replace: true });
+    } catch (error) {
+      console.error("Error saving note:", error);
+      alert("Unable to save note. Please try again.");
+      savingRef.current = false;
+    }
+  };
+
+  // Go back
+  const handleBack = () => {
+    const hasContent =
+      title.trim() || content.trim() || tags.trim();
+
+    if (hasContent) {
+      const confirmDiscard = window.confirm(
+        "Are you sure you want to discard this note?"
+      );
+
+      if (!confirmDiscard) return;
+    }
+
+    navigate("/dashboard");
   };
 
   return (
     <main className="note-preview-page">
       <header className="note-preview-toolbar">
         <button
+          type="button"
           className="preview-back-btn"
-          onClick={() => navigate("/dashboard")}
+          onClick={handleBack}
         >
           ← Back
         </button>
 
         <div className="preview-header-actions">
           <button
+            type="button"
             className="preview-action-btn"
             onClick={toggleTheme}
           >
@@ -112,6 +147,7 @@ const NoteEditor = ({ theme, toggleTheme }) => {
           </button>
 
           <button
+            type="button"
             className="preview-save-btn"
             onClick={handleSave}
           >
@@ -125,6 +161,7 @@ const NoteEditor = ({ theme, toggleTheme }) => {
 
         <input
           id="new-note-tags"
+          type="text"
           value={tags}
           onChange={(e) => setTags(e.target.value)}
           placeholder="Add tags separated by commas"
@@ -133,6 +170,7 @@ const NoteEditor = ({ theme, toggleTheme }) => {
 
       <section className="note-preview-content">
         <input
+          type="text"
           className="preview-title-input"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -149,35 +187,65 @@ const NoteEditor = ({ theme, toggleTheme }) => {
         />
 
         <div className="markdown-toolbar">
-          <button onClick={() => formatText("**")}>
+          <button
+            type="button"
+            title="Bold"
+            onClick={() => formatText("**")}
+          >
             <strong>B</strong>
           </button>
 
-          <button onClick={() => formatText("*")}>
+          <button
+            type="button"
+            title="Italic"
+            onClick={() => formatText("*")}
+          >
             <em>I</em>
           </button>
 
-          <button onClick={() => insertLine("# ")}>
+          <button
+            type="button"
+            title="Heading 1"
+            onClick={() => insertLine("# ")}
+          >
             H1
           </button>
 
-          <button onClick={() => insertLine("## ")}>
+          <button
+            type="button"
+            title="Heading 2"
+            onClick={() => insertLine("## ")}
+          >
             H2
           </button>
 
-          <button onClick={() => insertLine("- ")}>
+          <button
+            type="button"
+            title="Bullet list"
+            onClick={() => insertLine("- ")}
+          >
             • List
           </button>
 
-          <button onClick={() => insertLine("1. ")}>
+          <button
+            type="button"
+            title="Numbered list"
+            onClick={() => insertLine("1. ")}
+          >
             1. List
           </button>
 
-          <button onClick={() => formatText("`")}>
+          <button
+            type="button"
+            title="Inline code"
+            onClick={() => formatText("`")}
+          >
             {"</>"}
           </button>
 
           <button
+            type="button"
+            title="Insert link"
             onClick={() =>
               formatText("[", "](https://example.com)")
             }
