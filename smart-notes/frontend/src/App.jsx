@@ -27,9 +27,11 @@ const AppLayout = () => {
   return (
     <>
       {location.pathname !== "/dashboard" &&
+        location.pathname !== "/editor/new" &&
         !location.pathname.startsWith("/notes/") && <NavBar />}
 
-      {!location.pathname.startsWith("/notes/") && (
+      {!location.pathname.startsWith("/notes/") &&
+        location.pathname !== "/editor/new" &&(
         <button
           className="theme-toggle"
           onClick={() =>
@@ -46,7 +48,19 @@ const AppLayout = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/editor/new" element={<NoteEditor />} />
+        <Route
+          path="/editor/new"
+          element={
+            <NoteEditor
+              theme={theme}
+              toggleTheme={() =>
+                setTheme((current) =>
+                  current === "light" ? "dark" : "light"
+                )
+              }
+            />
+          }
+        />
         <Route
           path="/notes/:id"
           element={
