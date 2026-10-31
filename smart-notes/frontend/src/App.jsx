@@ -65,6 +65,7 @@ const AppLayout = () => {
           path="/notes/:id"
           element={
             <NotePreview
+              key={location.pathname}
               theme={theme}
               toggleTheme={() =>
                 setTheme((current) =>

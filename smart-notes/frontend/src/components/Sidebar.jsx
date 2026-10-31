@@ -5,32 +5,28 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
     { label: "All Notes", value: "all" },
     { label: "Archived", value: "archived" },
     { label: "Trash", value: "trash" },
-    { label: "Tags", value: "tags" }
-  ]
+    { label: "Tags", value: "tags" },
+  ];
 
   return (
     <aside className="sidebar">
       <h1 className="sidebar-logo">Smart Notes</h1>
 
       <nav className="sidebar-nav">
-      {sections.map((section) => (
-        <button
-          key={section.value}
-          className={`sidebar-link ${
+        {sections.map((section) => (
+          <button
+            key={section.value}
+            className={`sidebar-link ${
               activeSection === section.value ? "active" : ""
             }`}
-          onClick={() => setActiveSection(section.value)}
-        >
-          {section.label}
-        </button>
-      ))}
+            onClick={() => setActiveSection(section.value)}
+          >
+            {section.label}
+          </button>
+        ))}
       </nav>
 
       <div className="sidebar-bottom">
-        <Link to="/editor/new" className="sidebar-link">
-          Note Editor
-        </Link>
-
         <Link to="/login" className="sidebar-link">
           Login
         </Link>
@@ -39,10 +35,8 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
           Register
         </Link>
       </div>
-
     </aside>
+  );
+};
 
-  )
-}
-
-export default Sidebar
+export default Sidebar;
