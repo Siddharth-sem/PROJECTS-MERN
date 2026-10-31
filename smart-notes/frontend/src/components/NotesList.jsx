@@ -51,7 +51,9 @@ const addTestNote = () => {
 
 
   return (
-    <div>
+    <div className="notes-list-container">
+
+      <div className="notes-grid">
       {[...notes]
       .filter((note) => note.isTrashed === false)
       .filter((note) => note.isArchived === false)
@@ -86,6 +88,7 @@ const addTestNote = () => {
       >
         {showForm ? "Cancel" : "+ Create Note"}
       </button>
+      </div>
 
       {showForm && (
         <div>
