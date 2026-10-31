@@ -197,12 +197,14 @@ const handleSectionChange = (section) => {
   return (
 
     
-    <div>
+    <div className="dashboard-layout">
 
       <Sidebar
         activeSection={activeSection}
         setActiveSection={handleSectionChange}
       />
+
+      <main className="dashboard-main">
 
       <SearchBar 
         search={search}
@@ -318,6 +320,8 @@ const handleSectionChange = (section) => {
         editNote={editNote}
       />
       )}
+
+      </main>
     </div>
   )
 }

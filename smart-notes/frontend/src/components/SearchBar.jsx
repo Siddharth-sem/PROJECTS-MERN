@@ -1,7 +1,10 @@
 const SearchBar = ({search, setSearch}) => {
   return (
-    <div>
+    <div className="search-container">
+      <span className="search-icon">⌕</span>
+
       <input 
+      className="search-input"
       type="text" 
       placeholder="Search notes..."
       value={search}

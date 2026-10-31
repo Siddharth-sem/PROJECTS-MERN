@@ -1,51 +1,85 @@
+
 import ReactMarkdown from "react-markdown";
 
-const NoteCard = ({note, togglePin, deleteNote, permanentDelete, editNote, archiveNote}
-) => {
+const NoteCard = ({
+  note,
+  togglePin,
+  deleteNote,
+  permanentDelete,
+  editNote,
+  archiveNote
+}) => {
   return (
-    <div>
-      <h3>{note.title}</h3>
+    <div className="note-card">
 
-      <ReactMarkdown>{note.content}</ReactMarkdown>
+      <div className="note-card-header">
+        <h3 className="note-card-title">{note.title}</h3>
 
-      <p>
-        Tags : {note.tags.join(", ")}
-      </p>
+        {note.isPinned && (
+          <span className="pinned-label">Pinned</span>
+        )}
+      </div>
 
-      
-      {note.isTrashed === false && togglePin && (
-      <button onClick={() => togglePin(note.id)}>
-        {note.isPinned ? "Unpin" : "Pin"}
-      </button>
-      )}
+      <div className="note-card-content">
+        <ReactMarkdown>{note.content}</ReactMarkdown>
+      </div>
 
+      <div className="note-card-tags">
+        {note.tags.map((tag, index) => (
+          <span className="note-tag" key={index}>
+            {tag}
+          </span>
+        ))}
+      </div>
 
-      <button onClick={() => deleteNote(note.id)}>
-        {note.isTrashed ? "Restore" : "Trash"}
-      </button>
+      <div className="note-card-actions">
 
-      
+        {note.isTrashed === false && togglePin && (
+          <button
+            className="note-action-btn"
+            onClick={() => togglePin(note.id)}
+          >
+            {note.isPinned ? "Unpin" : "Pin"}
+          </button>
+        )}
 
-      {note.isTrashed && (
-      <button onClick={() => permanentDelete(note.id)}>
-        Remove Permanantely
-      </button>
-      )}
+        <button
+          className="note-action-btn"
+          onClick={() => deleteNote(note.id)}
+        >
+          {note.isTrashed ? "Restore" : "Trash"}
+        </button>
 
+        {note.isTrashed && (
+          <button
+            className="note-action-btn danger"
+            onClick={() => permanentDelete(note.id)}
+          >
+            Delete Permanently
+          </button>
+        )}
 
-      {note.isTrashed === false &&(
-      <button onClick={() => editNote(note.id)}>
-        Edit
-      </button>
-      )}
+        {note.isTrashed === false && editNote && (
+          <button
+            className="note-action-btn"
+            onClick={() => editNote(note.id)}
+          >
+            Edit
+          </button>
+        )}
 
-      {note.isTrashed === false &&(
-      <button onClick={() => archiveNote(note.id)}>
-        {note.isArchived ? "Unarchive" : "Archive"}
-      </button>
-      )}
+        {note.isTrashed === false && archiveNote && (
+          <button
+            className="note-action-btn"
+            onClick={() => archiveNote(note.id)}
+          >
+            {note.isArchived ? "Unarchive" : "Archive"}
+          </button>
+        )}
+
+      </div>
     </div>
-  ) 
-}
+  );
+};
 
-export default NoteCard
+export default NoteCard;

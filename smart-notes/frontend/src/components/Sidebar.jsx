@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const sections = [
@@ -8,24 +9,39 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   ]
 
   return (
-    <div>
-      <h1>Smart Notes</h1>
+    <aside className="sidebar">
+      <h1 className="slidebar-logo">Smart Notes</h1>
 
+      <nav>
       {sections.map((section) => (
         <button
           key={section.value}
+          className={`sidebar-link ${
+              activeSection === section.value ? "active" : ""
+            }`}
           onClick={() => setActiveSection(section.value)}
-          style={{
-            fontWeight:
-              activeSection === section.value
-                ? "bold"
-                : "normal"
-          }}
         >
           {section.label}
         </button>
       ))}
-    </div>
+      </nav>
+
+      <div className="sidebar-bottom">
+        <Link to="/editor" className="sidebar-link">
+          Note Editor
+        </Link>
+
+        <Link to="/login" className="sidebar-link">
+          Login
+        </Link>
+
+        <Link to="/register" className="sidebar-link">
+          Register
+        </Link>
+      </div>
+
+    </aside>
+
   )
 }
 
