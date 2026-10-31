@@ -56,9 +56,10 @@
   color: var(--text-primary);
 }
 
-.sidebar-link.active {
-  background: #eef2ff;
-  color: var(--primary);
+.sidebar-link.active e,
+.pinned-label{
+  background: var(--primary);
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -172,8 +173,8 @@
 }
 
 .note-tag {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-main);
+  color: var(--text-secondary);
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 12px;
@@ -248,4 +249,66 @@
     grid-template-columns: 1fr;
     gap: 14px;
   }
+}
+
+
+.empty-state {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  grid-column: 1 / -1;
+  font-size: 15px;
+}
+
+
+/*for create note button */
+
+.floating-create-btn {
+  position: fixed;
+  bottom: 28px;
+  left: calc(50% + 120px);
+  transform: translateX(-50%);
+
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: 0.2s ease;
+}
+
+.floating-create-btn:hover {
+  background: var(--primary-hover);
+  transform: translateX(-50%) translateY(-3px);
+}
+
+/* for theme-mode */
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 1100;
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
 }

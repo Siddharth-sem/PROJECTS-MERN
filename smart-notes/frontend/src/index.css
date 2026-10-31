@@ -28,6 +28,36 @@
   --radius-lg: 14px;
 }
 
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-main: #11111b;
+  --bg-card: #1c1b2b;
+  --bg-sidebar: #171625;
+
+  /* Text */
+  --text-primary: #f5f3ff;
+  --text-secondary: #b8b5c9;
+
+  /* Purple accent */
+  --primary: #a78bfa;
+  --primary-hover: #8b5cf6;
+
+  /* Borders */
+  --border-color: #343147;
+}
+
+body,
+button,
+input,
+textarea,
+.note-card,
+.sidebar {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
 * {
   box-sizing: border-box;
 }

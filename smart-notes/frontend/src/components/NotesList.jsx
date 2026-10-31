@@ -48,55 +48,61 @@ const addTestNote = () => {
   setShowForm(false)
 }
 
-
+const visibleNotes = [...notes]
+  .filter((note) => note.isTrashed === false)
+  .filter((note) => note.isArchived === false)
+  .sort((a, b) => Number(b.isPinned) - Number(a.isPinned))
+  .filter((note) =>
+    note.title.toLowerCase().includes(search.toLowerCase()) ||
+    note.content.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="notes-list-container">
+  <div className="notes-list-container">
 
-      <div className="notes-grid">
-      {[...notes]
-      .filter((note) => note.isTrashed === false)
-      .filter((note) => note.isArchived === false)
-      .sort((a,b)=> Number(b.isPinned) - Number(a.isPinned))
-      .filter((note) => 
-        note.title.toLowerCase().includes(search.toLowerCase()) ||
-        note.content.toLowerCase().includes(search.toLowerCase()))
-      .map((note) => (
-        <NoteCard 
-          key={note.id} 
-          note={note}
-          togglePin={togglePin}
-          deleteNote={deleteNote}
-          editNote={editNote}
-          archiveNote={archiveNote}
-        />
-      ))}
+    <div className="notes-grid">
+      {visibleNotes.length > 0 ? (
+        visibleNotes.map((note) => (
+          <NoteCard
+            key={note.id}
+            note={note}
+            togglePin={togglePin}
+            deleteNote={deleteNote}
+            editNote={editNote}
+            archiveNote={archiveNote}
+          />
+        ))
+      ) : (
+        <p className="empty-state">
+          {search.trim()
+            ? "No notes match your search."
+            : "No notes yet. Create your first note!"}
+        </p>
+      )}
+    </div>
 
-      <br />
-      <br />
+    <button
+      className="floating-create-btn"
+      onClick={() => {
+        if (showForm) {
+          setTitle("");
+          setContent("");
+          setTags("");
+          setShowForm(false);
+        } else {
+          setShowForm(true);
+        }
+      }}
+    >
+      {showForm ? "✕ Close Editor" : "+ Create Note"}
+    </button>
 
-      <button 
-        onClick={() => {
-          if (showForm) {
-            setTitle("")
-            setContent("")
-            setShowForm(false)
-          } else {
-            setShowForm(true)
-          }
-        }}
-      >
-        {showForm ? "Cancel" : "+ Create Note"}
-      </button>
-      </div>
-
-      {showForm && (
-        <div>
-        
+    {showForm && (
+      <div>
         <h2>Create Note</h2>
 
         <NoteForm
-          title ={title}
+          title={title}
           setTitle={setTitle}
           content={content}
           setContent={setContent}
@@ -104,20 +110,17 @@ const addTestNote = () => {
 
         <input
           type="text"
-          placeholder="Enter tags(comma separated)"
+          placeholder="Enter tags (comma separated)"
           value={tags}
-          onChange={(e)=>setTags(e.target.value)}
+          onChange={(e) => setTags(e.target.value)}
         />
-       
 
-          <button onClick={addTestNote}>
-            Save Note
-          </button>
-        </div>
-      )}
+        <button onClick={addTestNote}>Save Note</button>
+      </div>
+    )}
 
-    </div>
-  )
+  </div>
+);
 }
 
 export default NotesList
