@@ -10,7 +10,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
 
   return (
     <aside className="sidebar">
-      <h1 className="slidebar-logo">Smart Notes</h1>
+      <h1 className="sidebar-logo">Smart Notes</h1>
 
       <nav>
       {sections.map((section) => (
