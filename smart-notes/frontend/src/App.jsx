@@ -12,10 +12,14 @@ import './App.css'
 
 const AppLayout = () => {
   const location = useLocation()
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("smart-notes-theme") || "light";
+  });
 
     useEffect(() => {
       document.documentElement.setAttribute("data-theme", theme);
+
+      localStorage.setItem("smart-notes-theme", theme);
     }, [theme]);
 
   return (
