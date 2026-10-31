@@ -12,7 +12,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
     <aside className="sidebar">
       <h1 className="sidebar-logo">Smart Notes</h1>
 
-      <nav>
+      <nav className="sidebar-nav">
       {sections.map((section) => (
         <button
           key={section.value}
