@@ -1,0 +1,252 @@
+.note-preview-page {
+  min-height: 100vh;
+  padding: 90px 8% 50px;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.note-preview-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.preview-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview-back-btn,
+.preview-action-btn,
+.preview-edit-btn,
+.preview-save-btn {
+  padding: 9px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+.preview-back-btn:hover,
+.preview-action-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.preview-edit-btn,
+.preview-save-btn {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.preview-edit-btn:hover,
+.preview-save-btn:hover {
+  background: var(--primary-hover);
+}
+
+.preview-tags-row {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.preview-tags-row label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.preview-tags-row input {
+  width: 100%;
+  max-width: 600px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  outline: none;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.preview-tags-row input:focus {
+  border-color: var(--primary);
+}
+
+.note-preview-content {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.preview-note-title {
+  margin: 0 0 20px;
+  font-size: 34px;
+  overflow-wrap: anywhere;
+}
+
+.preview-note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.preview-markdown {
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.preview-markdown h1,
+.preview-markdown h2,
+.preview-markdown h3 {
+  color: var(--text-primary);
+}
+
+.preview-markdown pre {
+  padding: 16px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.preview-markdown code {
+  font-family: monospace;
+}
+
+.preview-markdown blockquote {
+  margin-left: 0;
+  padding-left: 16px;
+  border-left: 4px solid var(--primary);
+  color: var(--text-secondary);
+}
+
+.preview-title-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.preview-editor-textarea {
+  display: block;
+  width: 100%;
+  min-height: 55vh;
+  resize: vertical;
+  padding: 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px 10px 0 0;
+  outline: none;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.preview-editor-textarea:focus {
+  border-color: var(--primary);
+}
+
+.markdown-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  background: var(--bg-card);
+}
+
+.markdown-toolbar button {
+  min-width: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.markdown-toolbar button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.note-not-found {
+  padding: 100px 20px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.note-not-found button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .note-preview-page {
+    padding: 120px 16px 30px;
+  }
+
+  .note-preview-toolbar {
+    padding: 12px;
+  }
+
+  .preview-header-actions {
+    gap: 5px;
+  }
+
+  .preview-back-btn,
+  .preview-action-btn,
+  .preview-edit-btn,
+  .preview-save-btn {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .preview-tags-row {
+    top: 57px;
+    padding: 10px 12px;
+  }
+
+  .preview-note-title {
+    font-size: 26px;
+  }
+
+  .preview-title-input {
+    font-size: 24px;
+  }
+}

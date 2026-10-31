@@ -26,25 +26,40 @@ const AppLayout = () => {
 
   return (
     <>
-      {location.pathname !== "/dashboard" && <NavBar />}
+      {location.pathname !== "/dashboard" &&
+        !location.pathname.startsWith("/notes/") && <NavBar />}
 
-      <button
-        className="theme-toggle"
-        onClick={() =>
-          setTheme((current) =>
-            current === "light" ? "dark" : "light"
-          )
-        }
-      >
-        {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
-      </button>
+      {!location.pathname.startsWith("/notes/") && (
+        <button
+          className="theme-toggle"
+          onClick={() =>
+            setTheme((current) =>
+              current === "light" ? "dark" : "light"
+            )
+          }
+        >
+          {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+        </button>
+      )}
 
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/editor/new" element={<NoteEditor />} />
-        <Route path="/notes/:id" element={<NotePreview />} />
+        <Route
+          path="/notes/:id"
+          element={
+            <NotePreview
+              theme={theme}
+              toggleTheme={() =>
+                setTheme((current) =>
+                  current === "light" ? "dark" : "light"
+                )
+              }
+            />
+          }
+        />
       </Routes>
     </>
   );
