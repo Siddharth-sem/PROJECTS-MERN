@@ -85,7 +85,14 @@ const NoteCard = ({
             className="note-action-btn danger"
             onClick={(e) => {
               e.stopPropagation();
-              permanentDelete(note.id);
+
+              const confirmed = window.confirm(
+                `Permanently delete "${note.title}"? This action cannot be undone.`
+              );
+
+              if (confirmed) {
+                permanentDelete(note.id);
+              }
             }}
           >
             Delete Permanently
